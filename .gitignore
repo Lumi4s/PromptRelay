@@ -1,0 +1,33 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# Local config
+config.json
+
+# Secrets
+*.pem
+*.key
+*.p12
+*.crt
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Build
+/bin/
+/dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib

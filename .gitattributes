@@ -1,0 +1,15 @@
+# Go source
+*.go text eol=lf
+
+# Go modules
+go.mod text eol=lf
+go.sum text eol=lf
+
+# Config / scripts
+*.sh text eol=lf
+*.md text eol=lf
+
+# Keep binaries untouched
+*.png binary
+*.jpg binary
+*.exe binary
