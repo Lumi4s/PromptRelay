@@ -30,6 +30,7 @@ func LoadWorkflows() (map[uint8][]byte, error) {
 		}
 
 		path := filepath.Join(dir, entry.Name())
+		log.Printf("loaded workflow: %v", path)
 
 		data, err := os.ReadFile(path)
 		if err != nil {

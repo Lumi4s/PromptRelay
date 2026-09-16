@@ -31,7 +31,7 @@ func New(token string, workflows map[uint8][]byte, comfy *comfy.Client) (*Bot, e
 func (b *Bot) Run() {
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
-	var selectedWorkflow uint8 = 1
+	var selectedWorkflow uint8 = 2
 
 	updates := b.api.GetUpdatesChan(u)
 
@@ -51,7 +51,8 @@ func (b *Bot) Run() {
 			}
 
 			resp, err := b.client.SendWorkflow(workflowBytes)
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, resp)
+			b.client.WaitForResult(resp)
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Ready to view: curl -o %v \"http://100.126.246.121:8188/view?filename=Krea2-API_00003.png&type=output\"")
 			msg.ReplyToMessageID = update.Message.MessageID
 
 			if err != nil {

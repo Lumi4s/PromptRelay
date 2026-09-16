@@ -58,30 +58,30 @@ func (c *Client) SendWorkflow(workflow []byte) (string, error) {
 	return result.PromptID, nil
 }
 
-func (c *Client) WaitForResult(promptID string) error {
+func (c *Client) WaitForResult(promptID string) (string, error) {
 	var emptyBody uint8 = 0
 	for {
 		time.Sleep(2 * time.Second)
 		resp, err := c.httpClient.Get(c.url + "/history/" + promptID)
 		if err != nil {
-			return err
+			return "", err
 		}
 
 		body, err := io.ReadAll(resp.Body)
 		if err != nil {
-			return err
+			return "", err
 		}
 		resp.Body.Close()
 		var result map[string]any
 
 		err = json.Unmarshal(body, &result)
 		if err != nil {
-			return err
+			return "", err
 		}
 
 		if len(result) == 0 {
 			if emptyBody > 10 {
-				return fmt.Errorf("Empty 10 times")
+				return "", fmt.Errorf("Empty 10 times")
 			}
 			emptyBody++
 		}
@@ -103,7 +103,12 @@ func (c *Client) WaitForResult(promptID string) error {
 
 		if completed {
 			log.Println("Generation completed!")
-			return nil
+			return c.findFilename(promptID), nil
 		}
 	}
+}
+
+func (c *Client) findFilename(result map[string]any) (string, error) {
+
+	return promptID
 }
