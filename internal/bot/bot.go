@@ -9,11 +9,11 @@ import (
 
 type Bot struct {
 	api       *tgbotapi.BotAPI
-	workflows map[uint8][]byte
+	workflows map[string][]byte
 	client    *comfy.Client
 }
 
-func New(token string, workflows map[uint8][]byte, comfy *comfy.Client) (*Bot, error) {
+func New(token string, workflows map[string][]byte, comfy *comfy.Client) (*Bot, error) {
 	api, err := tgbotapi.NewBotAPI(token)
 	if err != nil {
 		return nil, err
@@ -31,7 +31,7 @@ func New(token string, workflows map[uint8][]byte, comfy *comfy.Client) (*Bot, e
 func (b *Bot) Run() {
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
-	var selectedWorkflow uint8 = 2
+	selectedWorklow := "Krea2.json"
 
 	updates := b.api.GetUpdatesChan(u)
 
@@ -39,7 +39,7 @@ func (b *Bot) Run() {
 		if update.Message != nil {
 			log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
 
-			workflowBytes, err := comfy.BuildWorkflow("prompt", b.workflows[selectedWorkflow])
+			workflowBytes, err := comfy.BuildWorkflow(update.Message.Text, b.workflows[selectedWorklow], selectedWorklow)
 			if err != nil {
 				log.Printf("failed to build workflow: %v", err)
 				continue
@@ -51,18 +51,37 @@ func (b *Bot) Run() {
 			}
 
 			resp, err := b.client.SendWorkflow(workflowBytes)
-			b.client.WaitForResult(resp)
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Ready to view: curl -o %v \"http://100.126.246.121:8188/view?filename=Krea2-API_00003.png&type=output\"")
-			msg.ReplyToMessageID = update.Message.MessageID
-
 			if err != nil {
-				log.Printf("failed to sendWorkflow: %v", err)
+				log.Printf("%v", err)
 			}
 
-			_, err = b.api.Send(msg)
+			filename, err := b.client.WaitForResultAndGetName(resp)
 			if err != nil {
-				log.Printf("failed to send message: %v", err)
+				log.Printf("%v", err)
 			}
+
+			imgBytes, err := b.client.GetImageBytes(filename)
+			if err != nil {
+				log.Printf("%v", err)
+			}
+
+			b.sendImage(update.Message.Chat.ID, imgBytes, filename)
+
 		}
 	}
+}
+
+func (b *Bot) sendImage(chatID int64, imgBytes []byte, filename string) error {
+	file := tgbotapi.FileBytes{
+		Name:  filename,
+		Bytes: imgBytes,
+	}
+
+	msg := tgbotapi.NewPhoto(chatID, file)
+	if _, err := b.api.Send(msg); err != nil {
+		log.Fatalln(err)
+	}
+	log.Printf("Success! %v was sent to chatID %v", filename, chatID)
+
+	return nil
 }

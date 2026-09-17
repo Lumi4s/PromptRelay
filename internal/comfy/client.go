@@ -15,11 +15,27 @@ type Client struct {
 	httpClient *http.Client
 }
 
-func New(url string) *Client {
+func New(url string) (*Client, error) {
+	err := isReachable(url)
+	if err != nil {
+		return nil, err
+	}
+
 	return &Client{
 		url:        url,
 		httpClient: &http.Client{},
+	}, nil
+
+}
+
+func isReachable(rawURL string) error {
+	client := &http.Client{Timeout: 2 * time.Second}
+	resp, err := client.Head(rawURL)
+	if err != nil {
+		return err
 	}
+	_ = resp.Body.Close()
+	return nil
 }
 
 func (c *Client) SendWorkflow(workflow []byte) (string, error) {
@@ -58,7 +74,7 @@ func (c *Client) SendWorkflow(workflow []byte) (string, error) {
 	return result.PromptID, nil
 }
 
-func (c *Client) WaitForResult(promptID string) (string, error) {
+func (c *Client) WaitForResultAndGetName(promptID string) (string, error) {
 	var emptyBody uint8 = 0
 	for {
 		time.Sleep(2 * time.Second)
@@ -80,8 +96,8 @@ func (c *Client) WaitForResult(promptID string) (string, error) {
 		}
 
 		if len(result) == 0 {
-			if emptyBody > 10 {
-				return "", fmt.Errorf("Empty 10 times")
+			if emptyBody > 30 {
+				return "", fmt.Errorf("Empty 30 times")
 			}
 			emptyBody++
 		}
@@ -103,12 +119,63 @@ func (c *Client) WaitForResult(promptID string) (string, error) {
 
 		if completed {
 			log.Println("Generation completed!")
-			return c.findFilename(promptID), nil
+			filename, err := c.findFilename(result, promptID)
+			if err != nil {
+				return "", err
+			}
+			return filename, nil
 		}
 	}
 }
 
-func (c *Client) findFilename(result map[string]any) (string, error) {
+func (c *Client) findFilename(jsonBodyMapped map[string]any, promptID string) (string, error) {
+	prompt, ok := jsonBodyMapped[promptID].(map[string]any)
+	if !ok {
+		return "", fmt.Errorf("invalid prompt structure")
+	}
 
-	return promptID
+	outputs, ok := prompt["outputs"].(map[string]any)
+	if !ok {
+		return "", fmt.Errorf("invalid outputs structure")
+	}
+
+	saveNode, ok := outputs["10052"].(map[string]any)
+	if !ok {
+		return "", fmt.Errorf("invalid saveNode structure")
+	}
+
+	imagesList, ok := saveNode["images"].([]any)
+	if !ok || len(imagesList) == 0 {
+		return "", fmt.Errorf("images is not a slice or empty")
+	}
+
+	firstImage, ok := imagesList[0].(map[string]any)
+	if !ok {
+		return "", fmt.Errorf("invalid image item structure")
+	}
+
+	filename, ok := firstImage["filename"].(string)
+	if !ok {
+		return "", fmt.Errorf("filename not found or not a string")
+	}
+
+	return filename, nil
+}
+
+func (c *Client) GetImageBytes(filename string) ([]byte, error) {
+	resp, err := c.httpClient.Get(c.url + "/view?filename=" + filename)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("GetImageBytes: comfyui returned bad status: %s", resp.Status)
+	}
+
+	imgBytes, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read comfy response: %w", err)
+	}
+	return imgBytes, nil
 }

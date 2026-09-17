@@ -19,7 +19,10 @@ func main() {
 		log.Fatalf("failed to load workflows: %v", err)
 	}
 
-	client := comfy.New(os.Getenv("COMFY_URL"))
+	client, err := comfy.New(os.Getenv("COMFY_URL"))
+	if err != nil {
+		log.Fatalf("comfy is unreachable: %v", err)
+	}
 
 	tgBot, err := bot.New(os.Getenv("BOT_TOKEN"), workflows, client)
 	if err != nil {
