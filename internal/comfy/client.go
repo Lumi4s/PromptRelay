@@ -6,7 +6,9 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"maps"
 	"net/http"
+	"slices"
 	"time"
 )
 
@@ -139,7 +141,26 @@ func (c *Client) findFilename(jsonBodyMapped map[string]any, promptID string) (s
 		return "", fmt.Errorf("invalid outputs structure")
 	}
 
-	saveNode, ok := outputs["10052"].(map[string]any)
+	var saveNodeId string
+loop:
+	for _, node := range slices.Collect(maps.Keys(outputs)) {
+		switch node {
+		case "10052":
+			saveNodeId = "10052"
+			break loop
+		case "13":
+			saveNodeId = "13"
+			break loop
+		default:
+			saveNodeId = ""
+		}
+	}
+
+	if saveNodeId == "" {
+		return "", fmt.Errorf("cant find any saving nodes.")
+	}
+
+	saveNode, ok := outputs[saveNodeId].(map[string]any)
 	if !ok {
 		return "", fmt.Errorf("invalid saveNode structure")
 	}

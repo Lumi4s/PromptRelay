@@ -60,6 +60,10 @@ func BuildWorkflow(prompt string, rawWorkflow []byte, workflowName string) ([]by
 		if err := insertPromptIntoKrea2(prompt, mapWorkflow); err != nil {
 			return nil, fmt.Errorf("failed to insert prompt for %s: %w", workflowName, err)
 		}
+	case "Anima.json":
+		if err := insertPromptIntoAnima(prompt, mapWorkflow); err != nil {
+			return nil, fmt.Errorf("failed to insert prompt for %s: %w", workflowName, err)
+		}
 	default:
 		return nil, fmt.Errorf("unknown workflow: %s", workflowName)
 	}
@@ -81,6 +85,27 @@ func insertPromptIntoKrea2(prompt string, mapWorkflow map[string]any) error {
 	promptNode, ok := promptField["10374:8779"].(map[string]any)
 	if !ok {
 		return errors.New("key '10374:8779' not found")
+	}
+
+	inputs, ok := promptNode["inputs"].(map[string]any)
+	if !ok {
+		return errors.New("key 'inputs' not found")
+	}
+
+	inputs["value"] = prompt
+
+	return nil
+}
+
+func insertPromptIntoAnima(prompt string, mapWorkflow map[string]any) error {
+	promptField, ok := mapWorkflow["prompt"].(map[string]any)
+	if !ok {
+		return errors.New("key 'prompt' not found")
+	}
+
+	promptNode, ok := promptField["472"].(map[string]any)
+	if !ok {
+		return errors.New("key '472' not found")
 	}
 
 	inputs, ok := promptNode["inputs"].(map[string]any)

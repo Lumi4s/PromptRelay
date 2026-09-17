@@ -31,13 +31,18 @@ func New(token string, workflows map[string][]byte, comfy *comfy.Client) (*Bot, 
 func (b *Bot) Run() {
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
-	selectedWorklow := "Krea2.json"
+	selectedWorklow := "Anima.json"
 
 	updates := b.api.GetUpdatesChan(u)
 
 	for update := range updates {
 		if update.Message != nil {
 			log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
+
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Got it!")
+			if _, err := b.api.Send(msg); err != nil {
+				log.Fatalln(err)
+			}
 
 			workflowBytes, err := comfy.BuildWorkflow(update.Message.Text, b.workflows[selectedWorklow], selectedWorklow)
 			if err != nil {
