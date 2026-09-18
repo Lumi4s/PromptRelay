@@ -12,34 +12,6 @@
         "title": "Preview Image"
       }
     },
-    "8850": {
-      "inputs": {
-        "mask_opacity": 0,
-        "mask_color": "255, 255, 255",
-        "pass_through": false,
-        "image": [
-          "8853:8048",
-          0
-        ],
-        "mask": [
-          "8853:8080",
-          0
-        ]
-      },
-      "class_type": "ImageAndMaskPreview",
-      "_meta": {
-        "title": "ImgAndMskPreview"
-      }
-    },
-    "8855": {
-      "inputs": {
-        "image": "photo_2026-07-23_01-15-37.jpg"
-      },
-      "class_type": "LoadImage",
-      "_meta": {
-        "title": "Load Image"
-      }
-    },
     "9212": {
       "inputs": {
         "clip_name": "qwen3vl_4b_fp8_scaled.safetensors",
@@ -160,6 +132,285 @@
         "title": "Diffusion Model Loader KJ"
       }
     },
+    "10050:9203": {
+      "inputs": {
+        "choice": "Empty (SD3)",
+        "index": 2,
+        "option1": "Empty",
+        "option2": "Empty (Flux.2)",
+        "option3": "Empty (SD3)",
+        "option4": ""
+      },
+      "class_type": "CustomCombo",
+      "_meta": {
+        "title": "Empty Latent From Combo"
+      }
+    },
+    "10050:9334": {
+      "inputs": {
+        "aspect_ratio": "1:1 (Square)",
+        "megapixels": 1.3,
+        "multiple": 64
+      },
+      "class_type": "ResolutionSelector",
+      "_meta": {
+        "title": "Resolution Selector"
+      }
+    },
+    "10374:8777": {
+      "inputs": {
+        "value": ""
+      },
+      "class_type": "PrimitiveString",
+      "_meta": {
+        "title": "Prompt Aux"
+      }
+    },
+    "10374:8779": {
+      "inputs": {
+        "value": "Man with ice cooler instead of his head named \"Vozdukhan\"."
+      },
+      "class_type": "PrimitiveStringMultiline",
+      "_meta": {
+        "title": "Prompt"
+      }
+    },
+    "10374:10539": {
+      "inputs": {
+        "value": ""
+      },
+      "class_type": "PrimitiveStringMultiline",
+      "_meta": {
+        "title": "Negative Prompt"
+      }
+    },
+    "10249:10245": {
+      "inputs": {
+        "max_shift": 1.15,
+        "base_shift": 0.5,
+        "width": 1024,
+        "height": 1024
+      },
+      "class_type": "ModelSamplingFlux",
+      "_meta": {
+        "title": "ModelSamplingFlux"
+      }
+    },
+    "10249:10246": {
+      "inputs": {
+        "scaling_factor": 1.02
+      },
+      "class_type": "Epsilon Scaling",
+      "_meta": {
+        "title": "Epsilon Scaling"
+      }
+    },
+    "10249:10247": {
+      "inputs": {},
+      "class_type": "ModelPassThrough",
+      "_meta": {
+        "title": "ModelPass"
+      }
+    },
+    "9830:10530": {
+      "inputs": {},
+      "class_type": "ModelPassThrough",
+      "_meta": {
+        "title": "ModelPass"
+      }
+    },
+    "9830:10533": {
+      "inputs": {
+        "min_padding": 0,
+        "min_length": 0
+      },
+      "class_type": "T5TokenizerOptions",
+      "_meta": {
+        "title": "T5 Tokenizer Options"
+      }
+    },
+    "10248:4200": {
+      "inputs": {
+        "max_shift": 1.15,
+        "base_shift": 0.5,
+        "width": 1024,
+        "height": 1024
+      },
+      "class_type": "ModelSamplingFlux",
+      "_meta": {
+        "title": "ModelSamplingFlux"
+      }
+    },
+    "10248:8693": {
+      "inputs": {
+        "cfg": 3,
+        "start_percent": 0.7,
+        "end_percent": 1
+      },
+      "class_type": "CFGOverride",
+      "_meta": {
+        "title": "CFG Override"
+      }
+    },
+    "10248:8672": {
+      "inputs": {},
+      "class_type": "ModelPassThrough",
+      "_meta": {
+        "title": "ModelPass"
+      }
+    },
+    "10248:7693": {
+      "inputs": {
+        "scaling_factor": 1.005
+      },
+      "class_type": "Epsilon Scaling",
+      "_meta": {
+        "title": "Epsilon Scaling"
+      }
+    },
+    "10248:7696": {
+      "inputs": {
+        "strength": 1
+      },
+      "class_type": "DifferentialDiffusion",
+      "_meta": {
+        "title": "Differential Diffusion"
+      }
+    },
+    "10475:10412": {
+      "inputs": {
+        "noise_seed": 213009895921381
+      },
+      "class_type": "RandomNoise",
+      "_meta": {
+        "title": "RandomNoise"
+      }
+    },
+    "10475:10417": {
+      "inputs": {
+        "value": 3
+      },
+      "class_type": "PrimitiveInt",
+      "_meta": {
+        "title": "Steps"
+      }
+    },
+    "10475:10469": {
+      "inputs": {
+        "value": 1
+      },
+      "class_type": "PrimitiveFloat",
+      "_meta": {
+        "title": "CFG"
+      }
+    },
+    "10475:10470": {
+      "inputs": {
+        "sampler_name": "er_sde"
+      },
+      "class_type": "KSamplerSelect",
+      "_meta": {
+        "title": "KSamplerSelect"
+      }
+    },
+    "10475:10464": {
+      "inputs": {
+        "value": true
+      },
+      "class_type": "PrimitiveBoolean",
+      "_meta": {
+        "title": "Enable 2nd Sampler?"
+      }
+    },
+    "10474:9905": {
+      "inputs": {
+        "value": 1
+      },
+      "class_type": "PrimitiveFloat",
+      "_meta": {
+        "title": "CFG"
+      }
+    },
+    "10474:7846": {
+      "inputs": {
+        "sampler_name": "euler_ancestral"
+      },
+      "class_type": "KSamplerSelect",
+      "_meta": {
+        "title": "KSamplerSelect"
+      }
+    },
+    "10474:10399": {
+      "inputs": {
+        "value": 8
+      },
+      "class_type": "PrimitiveInt",
+      "_meta": {
+        "title": "Steps"
+      }
+    },
+    "10474:7849": {
+      "inputs": {
+        "noise_seed": 122567144612027
+      },
+      "class_type": "RandomNoise",
+      "_meta": {
+        "title": "RandomNoise"
+      }
+    },
+    "10374:10340": {
+      "inputs": {
+        "text": "\nUltra-high resolution, professional photograph with exquisitely detailed surface textures, realistic subsurface scattering on organic materials, subtle imperfections for authenticity.\n\nSoft, directional natural lighting — warm sunlight streaming from window, skylight, or open shade, creating gentle highlights and nuanced shadows, minimal harsh contrast.\n\nShallow depth of field, creamy bokeh background, cinematic composition with intentional focus placement, emotionally resonant atmosphere.\n\nTrue-to-life color grading — muted, warm tones with natural saturation. Soft tonal transitions, subtle filmic grain.\n\nTack-sharp focus on primary subject, luminous specular highlights, exceptional three-dimensionality through light and shadow.",
+        "clip": [
+          "9212",
+          0
+        ]
+      },
+      "class_type": "CLIPTextEncode",
+      "_meta": {
+        "title": "Pos. Prompt 2 (Refiner)"
+      }
+    },
+    "9830:10309": {
+      "inputs": {
+        "lora_name": "krea2_fast\\krea2_Enhancer.safetensors",
+        "strength_model": 0.5,
+        "model": [
+          "10545",
+          0
+        ]
+      },
+      "class_type": "LoraLoaderModelOnly",
+      "_meta": {
+        "title": "Load LoRA"
+      }
+    },
+    "10248:7464": {
+      "inputs": {
+        "shift": 3.85,
+        "model": [
+          "10545",
+          0
+        ]
+      },
+      "class_type": "ModelSamplingAuraFlow",
+      "_meta": {
+        "title": "ModelSamplingAuraFlow"
+      }
+    },
+    "10050:9344": {
+      "inputs": {
+        "f_string": "{a} | Empty:0 | Flux:1 | SD3:2",
+        "values.a": [
+          "10050:9203",
+          0
+        ]
+      },
+      "class_type": "StringFormat",
+      "_meta": {
+        "title": "Format Text"
+      }
+    },
     "10050:9331": {
       "inputs": {
         "width": [
@@ -175,38 +426,6 @@
       "class_type": "EmptySD3LatentImage",
       "_meta": {
         "title": "EmptySD3LatentImage"
-      }
-    },
-    "10050:9347": {
-      "inputs": {
-        "string": [
-          "10050:9344",
-          0
-        ],
-        "regex_pattern": ".*(Flux|SD3|Empty).*\\|.*\\1:(\\d).*",
-        "replace": "\\2\n",
-        "case_insensitive": true,
-        "multiline": false,
-        "dotall": true,
-        "count": 0
-      },
-      "class_type": "RegexReplace",
-      "_meta": {
-        "title": "Replace Text (Regex)"
-      }
-    },
-    "10050:9203": {
-      "inputs": {
-        "choice": "Empty (SD3)",
-        "index": 2,
-        "option1": "Empty",
-        "option2": "Empty (Flux.2)",
-        "option3": "Empty (SD3)",
-        "option4": ""
-      },
-      "class_type": "CustomCombo",
-      "_meta": {
-        "title": "Empty Latent From Combo"
       }
     },
     "10050:9335": {
@@ -226,89 +445,6 @@
         "title": "Empty Latent Image"
       }
     },
-    "10050:9863": {
-      "inputs": {
-        "blend_factor": 1,
-        "samples1": [
-          "10050:9861",
-          0
-        ],
-        "samples2": [
-          "10050:9861",
-          0
-        ]
-      },
-      "class_type": "LatentBlend",
-      "_meta": {
-        "title": "L Blend"
-      }
-    },
-    "10050:9861": {
-      "inputs": {
-        "switch": [
-          "10050:9859",
-          2
-        ],
-        "on_false": [
-          "10050:9862",
-          0
-        ],
-        "on_true": [
-          "10050:9331",
-          0
-        ]
-      },
-      "class_type": "ComfySwitchNode",
-      "_meta": {
-        "title": "If/Else Switch [0,2]"
-      }
-    },
-    "10050:9862": {
-      "inputs": {
-        "switch": [
-          "10050:9860",
-          2
-        ],
-        "on_false": [
-          "10050:9335",
-          0
-        ],
-        "on_true": [
-          "10050:9332",
-          0
-        ]
-      },
-      "class_type": "ComfySwitchNode",
-      "_meta": {
-        "title": "If/Else Switch [0,1]"
-      }
-    },
-    "10050:9860": {
-      "inputs": {
-        "expression": "a == 1",
-        "values.a": [
-          "10050:9346",
-          1
-        ]
-      },
-      "class_type": "ComfyMathExpression",
-      "_meta": {
-        "title": "[1] Flux.2 Latent Check"
-      }
-    },
-    "10050:9859": {
-      "inputs": {
-        "expression": "a == 2",
-        "values.a": [
-          "10050:9346",
-          1
-        ]
-      },
-      "class_type": "ComfyMathExpression",
-      "_meta": {
-        "title": "[2] SD3 Latent Check"
-      }
-    },
     "10050:9332": {
       "inputs": {
         "width": [
@@ -324,166 +460,6 @@
       "class_type": "EmptyFlux2LatentImage",
       "_meta": {
         "title": "Empty Flux 2 Latent"
-      }
-    },
-    "10050:9346": {
-      "inputs": {
-        "value": [
-          "10050:9347",
-          0
-        ]
-      },
-      "class_type": "ComfyNumberConvert",
-      "_meta": {
-        "title": "Convert Number"
-      }
-    },
-    "10050:9334": {
-      "inputs": {
-        "aspect_ratio": "1:1 (Square)",
-        "megapixels": 1.2999999999999998,
-        "multiple": 64
-      },
-      "class_type": "ResolutionSelector",
-      "_meta": {
-        "title": "Resolution Selector"
-      }
-    },
-    "10050:9344": {
-      "inputs": {
-        "f_string": "{a} | Empty:0 | Flux:1 | SD3:2",
-        "values.a": [
-          "10050:9203",
-          0
-        ]
-      },
-      "class_type": "StringFormat",
-      "_meta": {
-        "title": "Format Text"
-      }
-    },
-    "10493:10486": {
-      "inputs": {
-        "conditioning": [
-          "10475:10411",
-          0
-        ]
-      },
-      "class_type": "ConditioningZeroOut",
-      "_meta": {
-        "title": "Cond. Zero Out"
-      }
-    },
-    "10493:10483": {
-      "inputs": {
-        "cfg": [
-          "10474:9905",
-          0
-        ],
-        "model": [
-          "10474:10396",
-          0
-        ],
-        "positive": [
-          "10474:10395",
-          0
-        ],
-        "negative": [
-          "10474:10395",
-          1
-        ]
-      },
-      "class_type": "DualModelGuider",
-      "_meta": {
-        "title": "Dual Model CFG Guider"
-      }
-    },
-    "10493:10488": {
-      "inputs": {
-        "cfg": [
-          "10475:10469",
-          0
-        ],
-        "model": [
-          "10475:10410",
-          0
-        ],
-        "positive": [
-          "10475:10411",
-          0
-        ],
-        "negative": [
-          "10493:10486",
-          0
-        ]
-      },
-      "class_type": "DualModelGuider",
-      "_meta": {
-        "title": "Dual Model CFG Guider 2"
-      }
-    },
-    "10374:10371": {
-      "inputs": {
-        "conditioning": [
-          "10374:8778",
-          1
-        ]
-      },
-      "class_type": "ConditioningZeroOut",
-      "_meta": {
-        "title": "Conditioning Zero Out"
-      }
-    },
-    "10374:8777": {
-      "inputs": {
-        "value": ""
-      },
-      "class_type": "PrimitiveString",
-      "_meta": {
-        "title": "Prompt Aux"
-      }
-    },
-    "10374:10506": {
-      "inputs": {
-        "switch": true,
-        "on_false": [
-          "10374:10340",
-          0
-        ],
-        "on_true": [
-          "10374:10508",
-          0
-        ]
-      },
-      "class_type": "ComfySwitchNode",
-      "_meta": {
-        "title": "Concatenate positive prompts?"
-      }
-    },
-    "10374:10505": {
-      "inputs": {
-        "switch": true,
-        "on_false": [
-          "10374:10341",
-          0
-        ],
-        "on_true": [
-          "10374:10507",
-          0
-        ]
-      },
-      "class_type": "ComfySwitchNode",
-      "_meta": {
-        "title": "Zero out negative conditioning?"
-      }
-    },
-    "10374:8779": {
-      "inputs": {
-        "value": "two Boilerplate"
-      },
-      "class_type": "PrimitiveStringMultiline",
-      "_meta": {
-        "title": "Prompt"
       }
     },
     "10374:8771": {
@@ -533,46 +509,6 @@
         "title": "CLIP Text Encode (SDXL)"
       }
     },
-    "10374:10510": {
-      "inputs": {
-        "conditioning": [
-          "10374:10372",
-          0
-        ]
-      },
-      "class_type": "ReferenceLatent",
-      "_meta": {
-        "title": "Set Reference Latent"
-      }
-    },
-    "10374:10507": {
-      "inputs": {
-        "conditioning": [
-          "10374:10372",
-          0
-        ]
-      },
-      "class_type": "ConditioningZeroOut",
-      "_meta": {
-        "title": "Conditioning Zero Out"
-      }
-    },
-    "10374:10508": {
-      "inputs": {
-        "conditioning_to": [
-          "10374:10340",
-          0
-        ],
-        "conditioning_from": [
-          "10374:10372",
-          0
-        ]
-      },
-      "class_type": "ConditioningConcat",
-      "_meta": {
-        "title": "Conditioning (Concat)"
-      }
-    },
     "10374:10372": {
       "inputs": {
         "text": [
@@ -587,6 +523,26 @@
       "class_type": "CLIPTextEncode",
       "_meta": {
         "title": "CLIP Text Encode (Prompt)"
+      }
+    },
+    "10374:8770": {
+      "inputs": {
+        "prompt": [
+          "10374:8779",
+          0
+        ],
+        "clip": [
+          "9212",
+          0
+        ],
+        "vae": [
+          "9213",
+          0
+        ]
+      },
+      "class_type": "TextEncodeQwenImageEditPlus",
+      "_meta": {
+        "title": "TextEncodeQwenImageEditPlus"
       }
     },
     "10374:10341": {
@@ -629,306 +585,6 @@
         "title": "TextEncodeBooguEdit"
       }
     },
-    "10374:8770": {
-      "inputs": {
-        "prompt": [
-          "10374:8779",
-          0
-        ],
-        "clip": [
-          "9212",
-          0
-        ],
-        "vae": [
-          "9213",
-          0
-        ]
-      },
-      "class_type": "TextEncodeQwenImageEditPlus",
-      "_meta": {
-        "title": "TextEncodeQwenImageEditPlus"
-      }
-    },
-    "10374:10340": {
-      "inputs": {
-        "text": "\nUltra-high resolution, professional photograph with exquisitely detailed surface textures, realistic subsurface scattering on organic materials, subtle imperfections for authenticity.\n\nSoft, directional natural lighting — warm sunlight streaming from window, skylight, or open shade, creating gentle highlights and nuanced shadows, minimal harsh contrast.\n\nShallow depth of field, creamy bokeh background, cinematic composition with intentional focus placement, emotionally resonant atmosphere.\n\nTrue-to-life color grading — muted, warm tones with natural saturation. Soft tonal transitions, subtle filmic grain.\n\nTack-sharp focus on primary subject, luminous specular highlights, exceptional three-dimensionality through light and shadow.",
-        "clip": [
-          "9212",
-          0
-        ]
-      },
-      "class_type": "CLIPTextEncode",
-      "_meta": {
-        "title": "Pos. Prompt 2 (Refiner)"
-      }
-    },
-    "10374:10539": {
-      "inputs": {
-        "value": ""
-      },
-      "class_type": "PrimitiveStringMultiline",
-      "_meta": {
-        "title": "Negative Prompt"
-      }
-    },
-    "10374:10509": {
-      "inputs": {
-        "reference_latents_method": "index_timestep_zero",
-        "conditioning": [
-          "10374:10510",
-          0
-        ]
-      },
-      "class_type": "FluxKontextMultiReferenceLatentMethod",
-      "_meta": {
-        "title": "Edit Model Reference Method"
-      }
-    },
-    "8853:8048": {
-      "inputs": {
-        "resize_type": "scale by multiplier",
-        "resize_type.multiplier": 1,
-        "scale_method": "area",
-        "input": [
-          "8853:9581",
-          0
-        ]
-      },
-      "class_type": "ResizeImageMaskNode",
-      "_meta": {
-        "title": "Resize Image/Mask"
-      }
-    },
-    "8853:7712": {
-      "inputs": {
-        "expression": "1280 if (a/b) > 1.88 else 1216 if (a/b) > 1.58 else 1088 if (a/b) > 1.36 else 1152 if (a/b) > 1.29 else 1088 if (a/b) > 1.12 else 1024 if (a/b) > 0.90 else 896 if (a/b) > 0.75 else 832 if (a/b) > 0.64 else 768 if (a/b) > 0.63 else 704 if (a/b) > 0.53 else 640",
-        "values.a": [
-          "8853:8631",
-          0
-        ],
-        "values.b": [
-          "8853:8631",
-          1
-        ]
-      },
-      "class_type": "ComfyMathExpression",
-      "_meta": {
-        "title": "SDXL Extended W"
-      }
-    },
-    "8853:7714": {
-      "inputs": {
-        "expression": "640 if (a/b) > 1.88 else 832 if (a/b) > 1.58 else 768 if (a/b) > 1.36 else 832 if (a/b) > 1.29 else 896 if (a/b) > 1.12 else 1024 if (a/b) > 0.90 else 1152 if (a/b) > 0.75 else 1152 if (a/b) > 0.64 else 1088 if (a/b) > 0.63 else 1280 if (a/b) > 0.53 else 1280",
-        "values.a": [
-          "8853:8631",
-          0
-        ],
-        "values.b": [
-          "8853:8631",
-          1
-        ]
-      },
-      "class_type": "ComfyMathExpression",
-      "_meta": {
-        "title": "SDXL Extended H"
-      }
-    },
-    "8853:8053": {
-      "inputs": {
-        "image": [
-          "8853:8048",
-          0
-        ]
-      },
-      "class_type": "GetImageSize",
-      "_meta": {
-        "title": "Get Image Size"
-      }
-    },
-    "8853:7701": {
-      "inputs": {
-        "value": 1,
-        "width": [
-          "8853:8053",
-          0
-        ],
-        "height": [
-          "8853:8053",
-          1
-        ]
-      },
-      "class_type": "SolidMask",
-      "_meta": {
-        "title": "Create Solid Mask"
-      }
-    },
-    "8853:8054": {
-      "inputs": {
-        "resize_type": "scale dimensions",
-        "resize_type.width": [
-          "8853:8053",
-          0
-        ],
-        "resize_type.height": [
-          "8853:8053",
-          1
-        ],
-        "resize_type.crop": "center",
-        "scale_method": "area",
-        "input": [
-          "8855",
-          1
-        ]
-      },
-      "class_type": "ResizeImageMaskNode",
-      "_meta": {
-        "title": "Resize Image/Mask"
-      }
-    },
-    "8853:8080": {
-      "inputs": {
-        "switch": [
-          "8853:9583",
-          2
-        ],
-        "on_false": [
-          "8853:8054",
-          0
-        ],
-        "on_true": [
-          "8853:7701",
-          0
-        ]
-      },
-      "class_type": "ComfySwitchNode",
-      "_meta": {
-        "title": "Mask Switch"
-      }
-    },
-    "8853:9583": {
-      "inputs": {
-        "expression": "(1 if a else 0) and (a[0] == 0.0)",
-        "values.a": [
-          "8853:9582",
-          0
-        ]
-      },
-      "class_type": "ComfyMathExpression",
-      "_meta": {
-        "title": "Mask Does NOT Exist Check"
-      }
-    },
-    "8853:9581": {
-      "inputs": {
-        "switch": [
-          "8853:9580",
-          2
-        ],
-        "on_false": [
-          "8853:8629",
-          0
-        ],
-        "on_true": [
-          "8855",
-          0
-        ]
-      },
-      "class_type": "ComfySwitchNode",
-      "_meta": {
-        "title": "Image Input Switch"
-      }
-    },
-    "8853:8629": {
-      "inputs": {
-        "width": 64,
-        "height": 64,
-        "batch_size": 1,
-        "color": 0
-      },
-      "class_type": "EmptyImage",
-      "_meta": {
-        "title": "Empty Image"
-      }
-    },
-    "8853:9580": {
-      "inputs": {
-        "expression": "(1 if a else 0) and (a[0] > 0.0)",
-        "values.a": [
-          "8853:9579",
-          0
-        ]
-      },
-      "class_type": "ComfyMathExpression",
-      "_meta": {
-        "title": "Image Exists Check"
-      }
-    },
-    "8853:9579": {
-      "inputs": {
-        "output_type": "list",
-        "images": [
-          "8855",
-          0
-        ]
-      },
-      "class_type": "MaskOrImageToWeight",
-      "_meta": {
-        "title": "Mask Or Image To Weight"
-      }
-    },
-    "8853:8631": {
-      "inputs": {
-        "image": [
-          "8853:9581",
-          0
-        ]
-      },
-      "class_type": "GetImageSize",
-      "_meta": {
-        "title": "Get Image Size"
-      }
-    },
-    "8853:9582": {
-      "inputs": {
-        "output_type": "list",
-        "masks": [
-          "8855",
-          1
-        ]
-      },
-      "class_type": "MaskOrImageToWeight",
-      "_meta": {
-        "title": "Mask Or Image To Weight"
-      }
-    },
-    "10249:10245": {
-      "inputs": {
-        "max_shift": 1.1500000000000001,
-        "base_shift": 0.5,
-        "width": 1024,
-        "height": 1024
-      },
-      "class_type": "ModelSamplingFlux",
-      "_meta": {
-        "title": "ModelSamplingFlux"
-      }
-    },
-    "10249:10246": {
-      "inputs": {
-        "scaling_factor": 1.02
-      },
-      "class_type": "Epsilon Scaling",
-      "_meta": {
-        "title": "Epsilon Scaling"
-      }
-    },
-    "10249:10247": {
-      "inputs": {},
-      "class_type": "ModelPassThrough",
-      "_meta": {
-        "title": "ModelPass"
-      }
-    },
     "10249:10244": {
       "inputs": {
         "shift": 1.2,
@@ -940,76 +596,6 @@
       "class_type": "ModelSamplingAuraFlow",
       "_meta": {
         "title": "ModelSamplingAuraFlow"
-      }
-    },
-    "9830:10530": {
-      "inputs": {},
-      "class_type": "ModelPassThrough",
-      "_meta": {
-        "title": "ModelPass"
-      }
-    },
-    "9830:10533": {
-      "inputs": {
-        "min_padding": 0,
-        "min_length": 0
-      },
-      "class_type": "T5TokenizerOptions",
-      "_meta": {
-        "title": "T5 Tokenizer Options"
-      }
-    },
-    "9830:10309": {
-      "inputs": {
-        "lora_name": "krea2_fast\\krea2_Enhancer.safetensors",
-        "strength_model": 0.5,
-        "model": [
-          "10545",
-          0
-        ]
-      },
-      "class_type": "LoraLoaderModelOnly",
-      "_meta": {
-        "title": "Load LoRA"
-      }
-    },
-    "10248:4200": {
-      "inputs": {
-        "max_shift": 1.1500000000000001,
-        "base_shift": 0.5,
-        "width": 1024,
-        "height": 1024
-      },
-      "class_type": "ModelSamplingFlux",
-      "_meta": {
-        "title": "ModelSamplingFlux"
-      }
-    },
-    "10248:8693": {
-      "inputs": {
-        "cfg": 3,
-        "start_percent": 0.7,
-        "end_percent": 1
-      },
-      "class_type": "CFGOverride",
-      "_meta": {
-        "title": "CFG Override"
-      }
-    },
-    "10248:8672": {
-      "inputs": {},
-      "class_type": "ModelPassThrough",
-      "_meta": {
-        "title": "ModelPass"
-      }
-    },
-    "10248:7693": {
-      "inputs": {
-        "scaling_factor": 1.005
-      },
-      "class_type": "Epsilon Scaling",
-      "_meta": {
-        "title": "Epsilon Scaling"
       }
     },
     "10248:7465": {
@@ -1026,191 +612,14 @@
         "title": "CFG Zero Star/Init"
       }
     },
-    "10248:7696": {
-      "inputs": {
-        "strength": 1
-      },
-      "class_type": "DifferentialDiffusion",
-      "_meta": {
-        "title": "Differential Diffusion"
-      }
-    },
-    "10248:6294": {
-      "inputs": {
-        "strength": 1.06,
-        "pre_cfg": false,
-        "model": [
-          "10248:7465",
-          0
-        ]
-      },
-      "class_type": "CFGNorm",
-      "_meta": {
-        "title": "CFGNorm"
-      }
-    },
-    "10248:7464": {
-      "inputs": {
-        "shift": 3.85,
-        "model": [
-          "10545",
-          0
-        ]
-      },
-      "class_type": "ModelSamplingAuraFlow",
-      "_meta": {
-        "title": "ModelSamplingAuraFlow"
-      }
-    },
-    "10051:9852": {
-      "inputs": {
-        "choice": "[0] Empty",
-        "index": 0,
-        "option1": "[0] Empty",
-        "option2": "[1] Image-to-Image",
-        "option3": "[2] Inpainting",
-        "option4": ""
-      },
-      "class_type": "CustomCombo",
-      "_meta": {
-        "title": "Latent Type Combo"
-      }
-    },
-    "10051:9855": {
-      "inputs": {
-        "samples": [
-          "10051:9854",
-          0
-        ],
-        "mask": [
-          "8853:8080",
-          0
-        ]
-      },
-      "class_type": "SetLatentNoiseMask",
-      "_meta": {
-        "title": "Set Latent Noise Mask"
-      }
-    },
-    "10051:9854": {
-      "inputs": {
-        "pixels": [
-          "8853:8048",
-          0
-        ],
-        "vae": [
-          "9213",
-          0
-        ]
-      },
-      "class_type": "VAEEncode",
-      "_meta": {
-        "title": "VAE Encode"
-      }
-    },
-    "10051:9836": {
-      "inputs": {
-        "expression": "a == 1",
-        "values.a": [
-          "10051:9856",
-          1
-        ]
-      },
-      "class_type": "ComfyMathExpression",
-      "_meta": {
-        "title": "[1] Image-to-Image Check"
-      }
-    },
-    "10051:9831": {
-      "inputs": {
-        "switch": [
-          "10051:9836",
-          2
-        ],
-        "on_false": [
-          "10050:9863",
-          0
-        ],
-        "on_true": [
-          "10051:9854",
-          0
-        ]
-      },
-      "class_type": "ComfySwitchNode",
-      "_meta": {
-        "title": "If/Else Switch [0,1]"
-      }
-    },
-    "10051:9832": {
-      "inputs": {
-        "switch": [
-          "10051:9834",
-          2
-        ],
-        "on_false": [
-          "10051:9831",
-          0
-        ],
-        "on_true": [
-          "10051:9855",
-          0
-        ]
-      },
-      "class_type": "ComfySwitchNode",
-      "_meta": {
-        "title": "If/Else Switch [0,2]"
-      }
-    },
-    "10051:9857": {
-      "inputs": {
-        "blend_factor": 1,
-        "samples1": [
-          "10051:9832",
-          0
-        ],
-        "samples2": [
-          "10051:9832",
-          0
-        ]
-      },
-      "class_type": "LatentBlend",
-      "_meta": {
-        "title": "L Blend"
-      }
-    },
-    "10051:9834": {
-      "inputs": {
-        "expression": "a == 2",
-        "values.a": [
-          "10051:9856",
-          1
-        ]
-      },
-      "class_type": "ComfyMathExpression",
-      "_meta": {
-        "title": "[2] Inpainting Check"
-      }
-    },
-    "10051:9856": {
-      "inputs": {
-        "value": [
-          "10051:9853",
-          0
-        ]
-      },
-      "class_type": "ComfyNumberConvert",
-      "_meta": {
-        "title": "Convert Number"
-      }
-    },
-    "10051:9853": {
+    "10050:9347": {
       "inputs": {
         "string": [
-          "10051:9852",
+          "10050:9344",
           0
         ],
-        "regex_pattern": "^\\[(\\d)\\].*",
-        "replace": "\\1\n",
+        "regex_pattern": ".*(Flux|SD3|Empty).*\\|.*\\1:(\\d).*",
+        "replace": "\\2\n",
         "case_insensitive": true,
         "multiline": false,
         "dotall": true,
@@ -1221,52 +630,56 @@
         "title": "Replace Text (Regex)"
       }
     },
-    "10475:10411": {
+    "10374:10510": {
       "inputs": {
-        "positive": [
-          "10374:10506",
+        "conditioning": [
+          "10374:10372",
           0
         ]
       },
-      "class_type": "CondPassThrough",
+      "class_type": "ReferenceLatent",
       "_meta": {
-        "title": "CondPassThrough"
+        "title": "Set Reference Latent"
       }
     },
-    "10475:10412": {
+    "10374:10507": {
       "inputs": {
-        "noise_seed": 213009895921381
+        "conditioning": [
+          "10374:10372",
+          0
+        ]
       },
-      "class_type": "RandomNoise",
+      "class_type": "ConditioningZeroOut",
       "_meta": {
-        "title": "RandomNoise"
+        "title": "Conditioning Zero Out"
       }
     },
-    "10475:10417": {
+    "10374:10508": {
       "inputs": {
-        "value": 3
+        "conditioning_to": [
+          "10374:10340",
+          0
+        ],
+        "conditioning_from": [
+          "10374:10372",
+          0
+        ]
       },
-      "class_type": "PrimitiveInt",
+      "class_type": "ConditioningConcat",
       "_meta": {
-        "title": "Steps"
+        "title": "Conditioning (Concat)"
       }
     },
-    "10475:10469": {
+    "10374:10371": {
       "inputs": {
-        "value": 1
+        "conditioning": [
+          "10374:8778",
+          1
+        ]
       },
-      "class_type": "PrimitiveFloat",
+      "class_type": "ConditioningZeroOut",
       "_meta": {
-        "title": "CFG"
-      }
-    },
-    "10475:10470": {
-      "inputs": {
-        "sampler_name": "er_sde"
-      },
-      "class_type": "KSamplerSelect",
-      "_meta": {
-        "title": "KSamplerSelect"
+        "title": "Conditioning Zero Out"
       }
     },
     "10475:10421": {
@@ -1299,44 +712,77 @@
         "title": "ModelPass"
       }
     },
-    "10475:10414": {
+    "10248:6294": {
       "inputs": {
-        "guidance": 3.5,
-        "conditioning": [
-          "10374:10506",
+        "strength": 1.06,
+        "pre_cfg": false,
+        "model": [
+          "10248:7465",
           0
         ]
       },
-      "class_type": "FluxGuidance",
+      "class_type": "CFGNorm",
       "_meta": {
-        "title": "FluxGuidance"
+        "title": "CFGNorm"
       }
     },
-    "10475:10464": {
+    "10050:9346": {
       "inputs": {
-        "value": true
+        "value": [
+          "10050:9347",
+          0
+        ]
       },
-      "class_type": "PrimitiveBoolean",
+      "class_type": "ComfyNumberConvert",
       "_meta": {
-        "title": "Enable 2nd Sampler?"
+        "title": "Convert Number"
       }
     },
-    "10474:9905": {
+    "10374:10509": {
       "inputs": {
-        "value": 1
+        "reference_latents_method": "index_timestep_zero",
+        "conditioning": [
+          "10374:10510",
+          0
+        ]
       },
-      "class_type": "PrimitiveFloat",
+      "class_type": "FluxKontextMultiReferenceLatentMethod",
       "_meta": {
-        "title": "CFG"
+        "title": "Edit Model Reference Method"
       }
     },
-    "10474:7846": {
+    "10374:10505": {
       "inputs": {
-        "sampler_name": "euler_ancestral"
+        "switch": true,
+        "on_false": [
+          "10374:10341",
+          0
+        ],
+        "on_true": [
+          "10374:10507",
+          0
+        ]
       },
-      "class_type": "KSamplerSelect",
+      "class_type": "ComfySwitchNode",
       "_meta": {
-        "title": "KSamplerSelect"
+        "title": "Zero out negative conditioning?"
+      }
+    },
+    "10374:10506": {
+      "inputs": {
+        "switch": true,
+        "on_false": [
+          "10374:10340",
+          0
+        ],
+        "on_true": [
+          "10374:10508",
+          0
+        ]
+      },
+      "class_type": "ComfySwitchNode",
+      "_meta": {
+        "title": "Concatenate positive prompts?"
       }
     },
     "10474:7848": {
@@ -1357,13 +803,55 @@
         "title": "BasicScheduler"
       }
     },
-    "10474:10399": {
+    "10474:10396": {
       "inputs": {
-        "value": 8
+        "model": [
+          "10248:6294",
+          0
+        ]
       },
-      "class_type": "PrimitiveInt",
+      "class_type": "ModelPassThrough",
       "_meta": {
-        "title": "Steps"
+        "title": "ModelPass"
+      }
+    },
+    "10050:9860": {
+      "inputs": {
+        "expression": "a == 1",
+        "values.a": [
+          "10050:9346",
+          1
+        ]
+      },
+      "class_type": "ComfyMathExpression",
+      "_meta": {
+        "title": "[1] Flux.2 Latent Check"
+      }
+    },
+    "10050:9859": {
+      "inputs": {
+        "expression": "a == 2",
+        "values.a": [
+          "10050:9346",
+          1
+        ]
+      },
+      "class_type": "ComfyMathExpression",
+      "_meta": {
+        "title": "[2] SD3 Latent Check"
+      }
+    },
+    "10474:10394": {
+      "inputs": {
+        "guidance": 3.5,
+        "conditioning": [
+          "10374:10509",
+          0
+        ]
+      },
+      "class_type": "FluxGuidance",
+      "_meta": {
+        "title": "FluxGuidance"
       }
     },
     "10474:10395": {
@@ -1382,23 +870,23 @@
         "title": "CondPassThrough"
       }
     },
-    "10474:10396": {
+    "10475:10411": {
       "inputs": {
-        "model": [
-          "10248:6294",
+        "positive": [
+          "10374:10506",
           0
         ]
       },
-      "class_type": "ModelPassThrough",
+      "class_type": "CondPassThrough",
       "_meta": {
-        "title": "ModelPass"
+        "title": "CondPassThrough"
       }
     },
-    "10474:10394": {
+    "10475:10414": {
       "inputs": {
         "guidance": 3.5,
         "conditioning": [
-          "10374:10509",
+          "10374:10506",
           0
         ]
       },
@@ -1407,13 +895,138 @@
         "title": "FluxGuidance"
       }
     },
-    "10474:7849": {
+    "10050:9862": {
       "inputs": {
-        "noise_seed": 122567144612027
+        "switch": [
+          "10050:9860",
+          2
+        ],
+        "on_false": [
+          "10050:9335",
+          0
+        ],
+        "on_true": [
+          "10050:9332",
+          0
+        ]
       },
-      "class_type": "RandomNoise",
+      "class_type": "ComfySwitchNode",
       "_meta": {
-        "title": "RandomNoise"
+        "title": "If/Else Switch [0,1]"
+      }
+    },
+    "10493:10483": {
+      "inputs": {
+        "cfg": [
+          "10474:9905",
+          0
+        ],
+        "model": [
+          "10474:10396",
+          0
+        ],
+        "positive": [
+          "10474:10395",
+          0
+        ],
+        "negative": [
+          "10474:10395",
+          1
+        ]
+      },
+      "class_type": "DualModelGuider",
+      "_meta": {
+        "title": "Dual Model CFG Guider"
+      }
+    },
+    "10493:10486": {
+      "inputs": {
+        "conditioning": [
+          "10475:10411",
+          0
+        ]
+      },
+      "class_type": "ConditioningZeroOut",
+      "_meta": {
+        "title": "Cond. Zero Out"
+      }
+    },
+    "10050:9861": {
+      "inputs": {
+        "switch": [
+          "10050:9859",
+          2
+        ],
+        "on_false": [
+          "10050:9862",
+          0
+        ],
+        "on_true": [
+          "10050:9331",
+          0
+        ]
+      },
+      "class_type": "ComfySwitchNode",
+      "_meta": {
+        "title": "If/Else Switch [0,2]"
+      }
+    },
+    "10493:10488": {
+      "inputs": {
+        "cfg": [
+          "10475:10469",
+        0
+        ],
+        "model": [
+          "10475:10410",
+          0
+        ],
+        "positive": [
+          "10475:10411",
+          0
+        ],
+        "negative": [
+          "10493:10486",
+          0
+        ]
+      },
+      "class_type": "DualModelGuider",
+      "_meta": {
+        "title": "Dual Model CFG Guider 2"
+      }
+    },
+    "10050:9863": {
+      "inputs": {
+        "blend_factor": 1,
+        "samples1": [
+          "10050:9861",
+          0
+        ],
+        "samples2": [
+          "10050:9861",
+          0
+        ]
+      },
+      "class_type": "LatentBlend",
+      "_meta": {
+        "title": "L Blend"
+      }
+    },
+    "10051:9857": {
+      "inputs": {
+        "blend_factor": 1,
+        "samples1": [
+          "10050:9863",
+          0
+        ],
+        "samples2": [
+          "10050:9863",
+          0
+        ]
+      },
+      "class_type": "LatentBlend",
+      "_meta": {
+        "title": "L Blend"
       }
     },
     "10501:8296": {
@@ -1430,22 +1043,6 @@
       "class_type": "VAEDecode",
       "_meta": {
         "title": "VAE Decode 1"
-      }
-    },
-    "10501:8299": {
-      "inputs": {
-        "samples": [
-          "10501:8298",
-          0
-        ],
-        "vae": [
-          "9213",
-          0
-        ]
-      },
-      "class_type": "VAEDecode",
-      "_meta": {
-        "title": "VAE Decode"
       }
     },
     "10501:8298": {
@@ -1466,6 +1063,22 @@
       "class_type": "ComfySwitchNode",
       "_meta": {
         "title": "Enable 2nd sampler?"
+      }
+    },
+    "10501:8299": {
+      "inputs": {
+        "samples": [
+          "10501:8298",
+          0
+        ],
+        "vae": [
+          "9213",
+          0
+        ]
+      },
+      "class_type": "VAEDecode",
+      "_meta": {
+        "title": "VAE Decode"
       }
     },
     "10501:8300": {

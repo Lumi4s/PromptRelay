@@ -2,6 +2,7 @@ package bot
 
 import (
 	"log"
+	"strings"
 
 	"github.com/Lumi4s/PromptRelay/internal/comfy"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
@@ -31,20 +32,26 @@ func New(token string, workflows map[string][]byte, comfy *comfy.Client) (*Bot, 
 func (b *Bot) Run() {
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
-	selectedWorklow := "Anima.json"
+	var selectedWorklow string = "Krea2.json"
 
 	updates := b.api.GetUpdatesChan(u)
 
 	for update := range updates {
 		if update.Message != nil {
-			log.Printf("[%s] %s", update.Message.From.UserName, update.Message.Text)
+			messageText := update.Message.Text
+			log.Printf("[%s] %s", update.Message.From.UserName, messageText)
+			if strings.Contains(messageText, "masterpiece") {
+				selectedWorklow = "Anima.json"
+			} else {
+				selectedWorklow = "Krea2.json"
+			}
 
-			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Got it!")
+			msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Got it! Using workflow: "+selectedWorklow)
 			if _, err := b.api.Send(msg); err != nil {
 				log.Fatalln(err)
 			}
 
-			workflowBytes, err := comfy.BuildWorkflow(update.Message.Text, b.workflows[selectedWorklow], selectedWorklow)
+			workflowBytes, err := comfy.BuildWorkflow(messageText, b.workflows[selectedWorklow], selectedWorklow)
 			if err != nil {
 				log.Printf("failed to build workflow: %v", err)
 				continue
